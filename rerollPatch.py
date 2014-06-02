@@ -43,13 +43,17 @@ if 'patch failed:' in patch_result_output or 'error: ' in patch_result_output:
         if choice in yes_values_list:
             thread_url = raw_input("Thread URL (with comment anchor)? ")
             git.commit('Applying patch from ' + thread_url)
-            utilityFunctions.open_rebase_conflicts_aptana(
-                                                          git.git_dir,
-                                                          patch_filename,
-                                                          git.rebase()
-                                                          )
-            print "Rebase paused, add files and rebase --continue"
-            sys.exit(1)
+            print git.rebase()
+            choice = raw_input("Rebase Clean? ").lower()
+            if choice in yes_values_list:
+                print "Generating New Patch\n"
+                new_patch_filename_string = raw_input("Patch Filename: ")
+                git.diff('8.x', new_patch_filename_string)
+                print "Patch Generated!"
+                sys.exit(0)
+            else :
+                print "Rebase paused, add files and rebase --continue"
+                sys.exit(1)
         print "Exiting due to concerns."
         sys.exit(1)
 else :
