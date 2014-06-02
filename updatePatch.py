@@ -19,5 +19,5 @@ git.apply_patch(patch_filename)
 git.commit('Old Patch')
 
 git.checkout(branch = 'new_patch', is_new_branch = True)
-utilityFunctions.open_diff_files_aptana(git.git_dir, patch_filename)
+utilityFunctions.open_diff_files_phpstorm(git.git_dir, patch_filename)
 print "Ready for development in new_patch. git add new changes and run generateNewPatch.py when done."

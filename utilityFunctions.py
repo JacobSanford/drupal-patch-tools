@@ -21,7 +21,7 @@ def download_patch(url):
         sys.exit(1)
     return patch_filename
 
-def open_diff_files_aptana(script_cwd, diff_file):
+def open_diff_files_phpstorm(script_cwd, diff_file):
     diff_file_point = open(diff_file, "r")
     files_to_open = []
     for line in diff_file_point:
@@ -32,9 +32,9 @@ def open_diff_files_aptana(script_cwd, diff_file):
                                               line.replace('+++ ', '').replace('b/', '').rstrip()
                                               )
                                  )
-    return open_files_aptana(files_to_open)
+    return open_files_phpstorm(files_to_open)
 
-def open_rebase_conflicts_aptana(script_cwd, patch_filename, rebase_output):
+def open_rebase_conflicts_phpstorm(script_cwd, patch_filename, rebase_output):
     files_to_open = [os.path.join(script_cwd, patch_filename)]
     for line in rebase_output:
         if 'CONFLICT (content): Merge conflict in ' in line:
@@ -45,11 +45,12 @@ def open_rebase_conflicts_aptana(script_cwd, patch_filename, rebase_output):
                                               )
                                  )
     print files_to_open
-    return open_files_aptana(files_to_open)
+    return open_files_phpstorm(files_to_open)
 
-def open_files_aptana(file_list):
-    file_open_command = ['/Applications/Aptana Studio 3/studio3']
+def open_files_phpstorm(file_list):
+    file_open_command = ['/Applications/PhpStorm.app/', '~/gitDev/drupal']
     file_open_command.extend(file_list)
-    print "Opening files in Aptana:"
+    print "Opening files in PHPStorm:"
     print "\n".join(file_list)
-    return subprocess.call(file_open_command)
+    # return subprocess.call(file_open_command)
+    return True
