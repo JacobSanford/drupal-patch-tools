@@ -122,7 +122,7 @@ class GitRepo:
                          branch
                        ], cwd = self.git_dir, stdout = subprocess.PIPE)
         p.wait()
-        return p.stdout
+        return p.stdout.read()
 
     def pull(self, remote = 'origin', branch_name = '8.x'):
         p = subprocess.Popen([
