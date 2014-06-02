@@ -137,15 +137,13 @@ class GitRepo:
     def patch(self, patch_filename, dry_run = False):
         if dry_run:
             p = subprocess.Popen([
-                             'patch',
-                             '--dry-run',
-                             '--verbose',
-                             '-N',
-                             '-p1',
-                             '-i', patch_filename
-                           ], cwd = self.git_dir, stdout = subprocess.PIPE)
+                             'git',
+                             'apply',
+                             '--check',
+                             patch_filename
+                           ], cwd = self.git_dir, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
             p.wait()
-            return p.stdout.read()
+            return p.stderr.read()
         else :
             p = subprocess.Popen([
                              'git',

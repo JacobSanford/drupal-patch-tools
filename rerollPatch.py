@@ -18,8 +18,9 @@ print "Downloading patch..."
 patch_filename = utilityFunctions.download_patch(sys.argv[1])
 print "Attempting to apply patch..."
 patch_result_output = git.patch(patch_filename, dry_run = True)
+print patch_result_output
 
-if 'hunk FAILED' in patch_result_output:
+if 'patch failed:' in patch_result_output or 'error: ' in patch_result_output:
     print "Patch does not apply cleanly!"
     print "Checking if patch applies cleanly at post date..."
     patch_date = raw_input("Enter the patch date: ")
@@ -32,7 +33,7 @@ if 'hunk FAILED' in patch_result_output:
                  commit_hash = hash_to_checkout
                  )
     patch_result_output = git.patch(patch_filename, dry_run = True)
-    if 'hunk FAILED' in patch_result_output:
+    if 'patch failed:' in patch_result_output or 'error: ' in patch_result_output:
         print "Patch doesn't apply cleanly on OLD hash, restart and try an older date."
         sys.exit(1)
     else:
