@@ -48,7 +48,7 @@ if 'patch failed:' in patch_result_output or 'error: ' in patch_result_output:
             if choice in yes_values_list:
                 print "Generating New Patch\n"
                 new_patch_filename_string = raw_input("Patch Filename: ")
-                git.diff('8.x', new_patch_filename_string)
+                git.diff('8.0.x', new_patch_filename_string)
                 print "Patch Generated!"
                 sys.exit(0)
             else :

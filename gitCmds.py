@@ -19,7 +19,7 @@ class GitRepo:
         p.wait()
         return p.returncode
 
-    def checkout(self, branch ='8.x', is_new_branch = False, commit_hash = False):
+    def checkout(self, branch ='8.0.x', is_new_branch = False, commit_hash = False):
         command_list = ['git', 'checkout']
         if is_new_branch : command_list.extend(['-b'])
         command_list.extend([branch])
@@ -115,7 +115,7 @@ class GitRepo:
         p.wait()
         return p.returncode
 
-    def rebase(self, branch = '8.x'):
+    def rebase(self, branch = '8.0.x'):
         p = subprocess.Popen([
                          'git',
                          'rebase',
@@ -124,7 +124,7 @@ class GitRepo:
         p.wait()
         return p.stdout.read()
 
-    def pull(self, remote = 'origin', branch_name = '8.x'):
+    def pull(self, remote = 'origin', branch_name = '8.0.x'):
         p = subprocess.Popen([
                          'git',
                          'pull',

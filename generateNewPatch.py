@@ -44,7 +44,7 @@ interdiff_filename = "_".join(
                                ]
                               ) + '.txt'
 
-git.diff('8.x', output_to_file = new_patch_filename)
+git.diff('8.0.x', output_to_file = new_patch_filename)
 git.diff('old_patch', output_to_file = interdiff_filename)
 
 print "Done."
