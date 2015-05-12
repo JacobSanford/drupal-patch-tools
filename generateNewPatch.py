@@ -28,7 +28,7 @@ issue_slug = raw_input("Enter The Issue Slug: ")
 arch_extra_info = raw_input("Enter The Arch/Extra Info: ")
 old_patch_no = raw_input("Enter The Old Patch Comment #: ")
 new_patch_no = raw_input("Enter The New Patch Comment #: ")
-new_patch_filename = "_".join(
+new_patch_filename = "-".join(
                               [
                                issue_no,
                                issue_slug,
