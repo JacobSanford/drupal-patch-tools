@@ -10,14 +10,14 @@ if not len(sys.argv) > 1:
     print "Please specify a Drupal.org patch URL"
     sys.exit(1)
 
-yes_values_list = set(['yes', 'y', 'ye', ''])
+yes_values_list = {'yes', 'y', 'ye', ''}
 
 git = GitRepo(os.getcwd())
 git.cleanup()
 print "Downloading patch..."
 patch_filename = utilityFunctions.download_patch(sys.argv[1])
 print "Attempting to apply patch..."
-patch_result_output = git.patch(patch_filename, dry_run = True)
+patch_result_output = git.patch(patch_filename, dry_run=True)
 print patch_result_output
 
 if 'patch failed:' in patch_result_output or 'error: ' in patch_result_output:
@@ -28,11 +28,11 @@ if 'patch failed:' in patch_result_output or 'error: ' in patch_result_output:
     print "Looks like " + hash_to_checkout + ' is the commit we need to roll back to...'
     project_string = raw_input("Enter a project string for branch: ")
     git.checkout(
-                 branch = project_string,
-                 is_new_branch = True,
-                 commit_hash = hash_to_checkout
-                 )
-    patch_result_output = git.patch(patch_filename, dry_run = True)
+        branch=project_string,
+        is_new_branch=True,
+        commit_hash=hash_to_checkout
+    )
+    patch_result_output = git.patch(patch_filename, dry_run=True)
     if 'patch failed:' in patch_result_output or 'error: ' in patch_result_output:
         print "Patch doesn't apply cleanly on OLD hash, restart and try an older date."
         sys.exit(1)
@@ -51,11 +51,11 @@ if 'patch failed:' in patch_result_output or 'error: ' in patch_result_output:
                 git.diff('8.0.x', new_patch_filename_string)
                 print "Patch Generated!"
                 sys.exit(0)
-            else :
+            else:
                 print "Rebase paused, add files and rebase --continue"
                 sys.exit(1)
         print "Exiting due to concerns."
         sys.exit(1)
-else :
+else:
     print "Patch applies cleanly, reverting working directory."
     git.cleanup()

@@ -28,23 +28,25 @@ issue_slug = raw_input("Enter The Issue Slug: ")
 arch_extra_info = raw_input("Enter The Arch/Extra Info: ")
 old_patch_no = raw_input("Enter The Old Patch Comment #: ")
 new_patch_no = raw_input("Enter The New Patch Comment #: ")
-new_patch_filename = "-".join(
-                              [
-                               issue_no,
-                               issue_slug,
-                               new_patch_no,
-                               arch_extra_info
-                               ]
-                              ) + '.patch'
-interdiff_filename = "_".join(
-                              [
-                               'interdiff',
-                               issue_no,
-                               old_patch_no + '-' + new_patch_no
-                               ]
-                              ) + '.txt'
 
-git.diff('8.0.x', output_to_file = new_patch_filename)
-git.diff('old_patch', output_to_file = interdiff_filename)
+new_patch_filename = "-".join(
+    [
+        issue_no,
+        issue_slug,
+        new_patch_no,
+        arch_extra_info,
+    ]
+) + '.patch'
+
+interdiff_filename = "_".join(
+    [
+        'interdiff',
+        issue_no,
+        old_patch_no + '-' + new_patch_no,
+    ]
+) + '.txt'
+
+git.diff('8.0.x', output_to_file=new_patch_filename)
+git.diff('old_patch', output_to_file=interdiff_filename)
 
 print "Done."
