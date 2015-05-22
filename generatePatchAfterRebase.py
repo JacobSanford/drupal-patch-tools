@@ -1,6 +1,6 @@
 #! /usr/bin/env python
-"""Generates a path and interdiff after updating a patch.
 """
+Generates a patch and interdiff from a repository after updating a patch."""
 from gitCmds import GitRepo
 import os
 

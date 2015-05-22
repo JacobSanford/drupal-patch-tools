@@ -1,6 +1,6 @@
 #! /usr/bin/env python
-"""Automates the repetitive parts of rerolling a patch.
 """
+Automates the repetitive parts of rerolling a patch."""
 from gitCmds import GitRepo
 import os
 import sys
